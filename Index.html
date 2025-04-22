@@ -1,0 +1,45 @@
+<!DOCTYPE html><html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cifra QWERTY-Alfabeto</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f4f4f4; }
+    textarea, input, button { width: 100%; margin: 10px 0; padding: 10px; font-size: 16px; }
+    button { cursor: pointer; background-color: #6200ee; color: white; border: none; border-radius: 5px; }
+    button:hover { background-color: #4500b5; }
+  </style>
+</head>
+<body>
+  <h1>Cifra QWERTY-Alfabeto</h1><label for="original">Texto original (alfabeto normal):</label>
+
+  <textarea id="original" rows="4" placeholder="Digite seu texto..."></textarea><button onclick="cifrar()">Cifrar (modo QWERTY)</button>
+
+<label for="cifrado">Texto cifrado (QWERTY):</label>
+
+  <textarea id="cifrado" rows="4" placeholder="Texto cifrado aparecerá aqui..."></textarea><button onclick="decifrar()">Decifrar</button>
+
+  <script>
+    const alfabeto = "abcdefghijklmnopqrstuvwxyz";
+    const qwerty =   "qwertyuiopasdfghjklzxcvbnm";
+
+    function cifrar() {
+      const texto = document.getElementById("original").value.toLowerCase();
+      let resultado = "";
+      for (let char of texto) {
+        const idx = alfabeto.indexOf(char);
+        resultado += idx !== -1 ? qwerty[idx] : char;
+      }
+      document.getElementById("cifrado").value = resultado;
+    }
+
+    function decifrar() {
+      const texto = document.getElementById("cifrado").value.toLowerCase();
+      let resultado = "";
+      for (let char of texto) {
+        const idx = qwerty.indexOf(char);
+        resultado += idx !== -1 ? alfabeto[idx] : char;
+      }
+      document.getElementById("original").value = resultado;
+    }
+  </script></body>
+</html>
